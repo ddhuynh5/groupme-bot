@@ -1,4 +1,3 @@
 flask
 gunicorn
 requests
-git+https://github.com/ddhuynh5/discord.py
