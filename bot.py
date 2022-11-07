@@ -1,7 +1,11 @@
 import requests
-from flask import Flask
+import os
+from dotenv import load_dotenv
+from flask import Flask, request
 
-
+load_dotenv()
+token = os.getenv("TOKEN")
+bot_id = os.getenv("BOT_ID")
 app = Flask(__name__)
 
 
@@ -25,9 +29,9 @@ def receive():
 
 def send(msg):
     url = "https://api.groupme.com/v3/bots/post"
-    data = {
-        "bot_id": os.getenv("BOT_ID"),
+    json = {
+        "bot_id": bot_id,
         "text": msg
     }
-    req = requests.post(url, data=data)
+    req = requests.post(url, json=json)
     print(req)
