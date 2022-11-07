@@ -1,10 +1,16 @@
 import requests
 import os
 from flask import Flask, request
+from groupy import Client
 
 token = os.getenv("TOKEN")
 bot_id = os.getenv("BOT_ID")
 app = Flask(__name__)
+
+client = Client.from_token(token)
+group = 90490339
+for member in group.members:
+    print(member.nickname)
 
 
 @app.route('/', methods=['GET'])
