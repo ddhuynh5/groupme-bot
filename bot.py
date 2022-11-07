@@ -1,9 +1,7 @@
 import requests
 import os
-from dotenv import load_dotenv
 from flask import Flask, request
 
-load_dotenv()
 token = os.getenv("TOKEN")
 bot_id = os.getenv("BOT_ID")
 app = Flask(__name__)
