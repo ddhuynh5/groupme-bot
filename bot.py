@@ -24,8 +24,9 @@ def receive():
     if data['sender_type'] != 'bot':
         if data['text'].startswith('/ping'):
             send(data['name'] + ' pinged me!')
-        if data['name'] == "Dennis Huynh" and data['text'].startswith('ayo'):
-            send_with_img('hi', 'ayo.jpg')
+        if data['text'].startswith('ayo'):
+            post_img_to_groupme('ayo.jpg')
+            send_with_img('ayo', 'ayo.jpg')
 
     return 'ok', 200
 
@@ -52,3 +53,17 @@ def send_with_img(msg, img):
     }
     req = requests.post(url, json=json)
     print("request: ", req)
+
+
+def post_img_to_groupme(img):
+    img_url = 'https://image.groupme.com/pictures'
+    json = {
+        "access_token": token,
+        "attachments": [
+            {
+                "type": "image",
+                "url": img
+            }
+        ]
+    }
+    requests.post(img_url, json=json)
