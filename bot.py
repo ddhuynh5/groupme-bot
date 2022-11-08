@@ -22,6 +22,8 @@ def receive():
     if data['sender_type'] != 'bot':
         if data['text'].startswith('/ping'):
             send(data['name'] + ' pinged me!')
+        elif data['sender'] == 'Dennis':
+            send('hi dennis')
 
     return 'ok', 200
 
