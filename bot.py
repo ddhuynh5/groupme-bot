@@ -22,7 +22,7 @@ def receive():
     if data['sender_type'] != 'bot':
         if data['text'].startswith('/ping'):
             send(data['name'] + ' pinged me!')
-        if data['sender_id'] == 874343:
+        if data['name'] == "Dennis Huynh":
             send('hi dennis')
 
     return 'ok', 200
@@ -35,4 +35,4 @@ def send(msg):
         "text": msg
     }
     req = requests.post(url, json=json)
-    print(req)
+    print("request: ", req)
