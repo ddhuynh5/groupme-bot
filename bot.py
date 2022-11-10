@@ -10,27 +10,27 @@ url = "https://api.groupme.com/v3/bots/post"
 img_url = "https://image.groupme.com"
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home():
-    return 'https://my-groupme-bot.onrender.com/'
+    return "https://my-groupme-bot.onrender.com/"
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def receive():
     data = request.get_json()
     print("Incoming Msg: ")
     print(data)
 
     # Prevent self-reply
-    if data['sender_type'] != 'bot':
-        if data['text'].startswith('/ping'):
-            send(data['name'] + ' pinged me!')
-        if data['text'].startswith('test') and data['name'] == 'Dennis Huynh':
-            send('Hello ' + data['name'])
-        if data['text'].startswith('ayo'):
-            send('The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.')
+    if data["sender_type"] != "bot":
+        if data["text"].startswith("/ping"):
+            send(data["name"] + " pinged me!")
+        if data["name"] == "Nathan Rolfes":
+            send("ok")
+        if data["text"].startswith("ayo"):
+            send("The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.")
 
-    return 'ok', 200
+    return "ok", 200
 
 
 def send(msg):
@@ -43,15 +43,15 @@ def send(msg):
 
 
 def post_img_to_groupme(msg, img):
-    data = open('./mat.jpeg', 'rb').read()
-    res = requests.post(url='https://image.groupme.com/pictures',
+    data = open("./mat.jpeg", "rb").read()
+    res = requests.post(url="https://image.groupme.com/pictures",
                         data=data,
-                        headers={'Content-Type': 'image/jpeg',
-                                'X-Access-Token': 'ACCESS_TOKEN'})
+                        headers={"Content-Type": "image/jpeg",
+                                "X-Access-Token": "ACCESS_TOKEN"})
     print(res.content)
 
 
     """ def post_img_to_chat(img):
-    post_data = {'text': 'TESTING TEST TEST RAHHHH', 'picture_url':YOUR_PIC_URL}
+    post_data = {"text": "TESTING TEST TEST RAHHHH", "picture_url":YOUR_PIC_URL}
 
-    requests.post('https://api.groupme.com/v3/bots/post', params = post_params, data = post_data) """
+    requests.post("https://api.groupme.com/v3/bots/post", params = post_params, data = post_data) """
