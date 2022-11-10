@@ -24,9 +24,10 @@ def receive():
     if data['sender_type'] != 'bot':
         if data['text'].startswith('/ping'):
             send(data['name'] + ' pinged me!')
-        if data['text'].startswith('ayo'):
-            post_img_to_groupme('ayo.jpg')
-            send_with_img('ayo', 'ayo.jpg')
+        if data['text'].startswith('test') and data['name'] == 'Dennis Huynh':
+            send('Hello ' + data['name'])
+        elif data['text'].startswith('ayo'):
+            send('The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.')
 
     return 'ok', 200
 
