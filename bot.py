@@ -7,6 +7,7 @@ bot_id = os.getenv("BOT_ID")
 app = Flask(__name__)
 
 url = "https://api.groupme.com/v3/bots/post"
+img_url = "https://image.groupme.com"
 
 
 @app.route('/', methods=['GET'])
@@ -41,30 +42,16 @@ def send(msg):
     print("request: ", req)
 
 
-def send_with_img(msg, img):
-    json = {
-        "bot_id": bot_id,
-        "text": msg,
-        "attachments": [
-            {
-                "type": "image",
-                "url": img
-            }
-        ]
-    }
-    req = requests.post(url, json=json)
-    print("request: ", req)
+def post_img_to_groupme(msg, img):
+    data = open('./mat.jpeg', 'rb').read()
+    res = requests.post(url='https://image.groupme.com/pictures',
+                        data=data,
+                        headers={'Content-Type': 'image/jpeg',
+                                'X-Access-Token': 'ACCESS_TOKEN'})
+    print(res.content)
 
 
-def post_img_to_groupme(img):
-    img_url = 'https://image.groupme.com/pictures'
-    json = {
-        "access_token": token,
-        "attachments": [
-            {
-                "type": "image",
-                "url": img
-            }
-        ]
-    }
-    requests.post(img_url, json=json)
+    """ def post_img_to_chat(img):
+    post_data = {'text': 'TESTING TEST TEST RAHHHH', 'picture_url':YOUR_PIC_URL}
+
+    requests.post('https://api.groupme.com/v3/bots/post', params = post_params, data = post_data) """
