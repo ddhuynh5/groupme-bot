@@ -34,7 +34,7 @@ def receive():
         if data["text"].startswith("cat"):
             send_cat()
         else:
-            send(":)")
+            post_img_to_groupme()
 
     return "ok", 200
 
@@ -64,7 +64,7 @@ def post_img_to_groupme():
                         data=data,
                         headers={"Content-Type": "image/jpeg",
                                  "X-Access-Token": "ACCESS_TOKEN"})
-    print(res.content)
+    print("HERE: ", res.content)
 
 
 def post_img_to_chat(img):
