@@ -54,8 +54,8 @@ def send_cat():
     res = response.json()
 
     for r in res:
-        requests.post(cat_url, json=r["url"])
-    print("cat: ", r)
+        requests.post(url, json=r["url"])
+    print("cat: ", r["url"], "\ntest: ", url)
 
 
 def post_img_to_groupme():
