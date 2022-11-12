@@ -49,18 +49,18 @@ def send(msg):
 
 
 def send_cat():
-    url = "https://api.thecatapi.com/v1/images/search"
-    response = requests.get(url)
+    cat_url = "https://api.thecatapi.com/v1/images/search"
+    response = requests.get(cat_url)
     res = response.json()
 
     for r in res:
-        req = requests.post(url, data=r["url"])
+        req = requests.post(cat_url, json=r["url"])
     print("cat: ", req)
 
 
 def post_img_to_groupme():
     data = open("./mat.jpeg", "rb").read()
-    req = requests.post(url, data=data)
+    req = requests.post(url, json=data)
     print("HERE: ", req)
 
 
