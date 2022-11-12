@@ -60,11 +60,8 @@ def send_cat():
 
 def post_img_to_groupme():
     data = open("./mat.jpeg", "rb").read()
-    res = requests.post(url="https://image.groupme.com/pictures",
-                        data=data,
-                        headers={"Content-Type": "image/jpeg",
-                                 "X-Access-Token": "ACCESS_TOKEN"})
-    print("HERE: ", res.content)
+    req = requests.post(url, data=data)
+    print("HERE: ", req)
 
 
 def post_img_to_chat(img):
