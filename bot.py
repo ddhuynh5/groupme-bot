@@ -64,9 +64,9 @@ def post_img_to_groupme():
                             data=img,
                             headers={'Content-Type': 'image/jpeg',
                                      'X-Access-Token': token})
-    print(req, req.text, req.content)
-    data = json.loads(req.text)
-    picture_url = data["payload"]["picture_url"]
+    d = json.loads(req.text)
+    print(d)
+    picture_url = d["payload"]["picture_url"]
     print(picture_url)
 
     json = {
