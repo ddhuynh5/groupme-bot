@@ -33,7 +33,7 @@ def receive():
                 "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.")
         if data["text"].startswith("cat"):
             send_cat()
-        else:
+        if data["text"].startswith("mat"):
             post_img_to_groupme()
 
     return "ok", 200
@@ -54,14 +54,29 @@ def send_cat():
     res = response.json()
 
     for r in res:
-        requests.post(url, json=r["url"])
-    print("cat: ", r["url"], "\ntest: ", url)
+        req = requests.post(url, json=r["url"])
+    print("cat: ", r["url"], "\ntest: ", req)
 
 
 def post_img_to_groupme():
-    data = open("./mat.jpeg", "rb").read()
-    req = requests.post(url, json=data)
-    print("HERE: ", req)
+    img = open("./mat.jpeg", "rb").read()
+    req = requests.post(url='https://image.groupme.com/pictures',
+                            data=img,
+                            headers={'Content-Type': 'image/jpeg',
+                                     'X-Access-Token': token})
+    data = json.loads(req.text)
+    picture_url = data["payload"]["picture_url"]
+
+    json = {
+        "bot_id": bot_id,
+        "attachments": [
+            {
+                "type": "image/jpeg",
+                "url": picture_url
+            }
+        ]
+    }
+    requests.post(url=url, json=json)
 
 
 def post_img_to_chat(img):
