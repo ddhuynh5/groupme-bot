@@ -69,7 +69,7 @@ def post_img_to_groupme():
     picture_url = d["payload"]["picture_url"]
     print(picture_url)
 
-    json = {
+    send_json = {
         "bot_id": bot_id,
         "attachments": [
             {
@@ -78,5 +78,5 @@ def post_img_to_groupme():
             }
         ]
     }
-    r = requests.post(url=url, json=json)
+    r = requests.post(url=url, json=send_json)
     print("mat: ", r)
