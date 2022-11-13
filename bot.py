@@ -76,7 +76,8 @@ def post_img_to_groupme():
             }
         ]
     }
-    requests.post(url=url, json=json)
+    r = requests.post(url=url, json=json)
+    print("mat: ", r)
 
 
 def post_img_to_chat(img):
