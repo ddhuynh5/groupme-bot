@@ -64,25 +64,19 @@ def post_img_to_groupme():
                             data=img,
                             headers={'Content-Type': 'image/jpeg',
                                      'X-Access-Token': token})
+    print(req, req.text, req.content)
     data = json.loads(req.text)
     picture_url = data["payload"]["picture_url"]
+    print(picture_url)
 
     json = {
         "bot_id": bot_id,
         "attachments": [
             {
-                "type": "image/jpeg",
+                "type": "image",
                 "url": picture_url
             }
         ]
     }
     r = requests.post(url=url, json=json)
     print("mat: ", r)
-
-
-def post_img_to_chat(img):
-    post_data = {"text": "TESTING TEST TEST RAHHHH",
-                 "picture_url": YOUR_PIC_URL}
-
-    requests.post("https://api.groupme.com/v3/bots/post",
-                  params=post_params, data=post_data)
