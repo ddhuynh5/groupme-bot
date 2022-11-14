@@ -5,7 +5,7 @@ import random
 from flask import Flask, request
 
 token = os.getenv("TOKEN")
-bot_id = os.getenv("BOT_ID")
+bot_id = os.getenv("BOT_ID")  # os.getenv("TEST_BOT_ID")
 app = Flask(__name__)
 
 url = "https://api.groupme.com/v3/bots/post"
