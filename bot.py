@@ -21,7 +21,7 @@ def home():
 def receive():
     mat_names = ["mat", "matt", "matthew"]
     rand_num = random.randint(-100, 100)
-    bas_rand = random.randint(0, 500)
+    bas_rand = random.randint(0, 1000)
 
     data = request.get_json()
     print("Incoming Msg: ")
@@ -31,7 +31,7 @@ def receive():
     if data["sender_type"] != "bot":
         if data["text"].startswith("/ping"):
             send(data["name"] + " pinged me!")
-        if data["name"] == "Basith Penna-Hakkim" and bas_rand <= 50:
+        if data["name"] == "Basith Penna-Hakkim" and bas_rand <= 5:
             send(
                 "oh my dear basith\nmy heart yearns for your friendship\nlet’s be friends basith")
             post_img_to_groupme("./bas.jpg")
